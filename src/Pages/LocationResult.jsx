@@ -54,12 +54,6 @@ console.log(value);
           {place ? <span> for {place}</span> : ""}
         </p>
 
-        {/* <select name="" id="" onChange={handlePrice}>
-          <option value="">how many people?</option>
-          <option value="1">1</option>
-          <option value="1">2</option>
-          <option value="1">3</option>
-        </select> */}
       </div>
       <div className="grid gap-8">
         {listOfAvailablePlaces.map((item) => {
@@ -76,25 +70,26 @@ console.log(value);
               </div>
 
               <div className="grid gap-4 md:col-span-3">
-                <div className="flex items-center justify-between">
+                <div className="grid  md:flex items-center justify-between">
                   <div>
-                    <h1 className="text-1xl font-bold text-[#006ce4]">
-                      {item.propertyName}{" "}
+                  <h1 className=" text-[#006ce4] text-1xl font-bold">
+
+                      {item.propertyName}
                     </h1>
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <h1 className="text-[#1a1a1a] font-semibold text-1xl">
+                    <h1 className="text-[#1a1a1a]  text-1xl font-semibold md:text-1xl">
                       {item.ratings}{" "}
                     </h1>
-                    <button className="bg-[#003b95] p-4 rounded text-white font-semibold">
+                    <button className="bg-[#003b95] p-1  rounded text-white font-semibold md:p-4">
                       {" "}
                       8.2{" "}
                     </button>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between">
+                <div className="md:flex items-center justify-between overflow-x-scroll">
                   <div>
                     <h1 className="font-bold text-[#000]">{item.roomType} </h1>
                     {item.breakfast ? (
@@ -110,14 +105,14 @@ console.log(value);
                   </div>
 
                   <div className="items-center gap-2 justify-end">
-                    <h1 className="text-[#1a1a1a] font-semibold text-2xl md:text-3xl  text-right">
+                    <h1 className="text-[#1a1a1a] font-semibold text-2xl md:text-3xl  md:text-right">
                       &#8358;{formatter.format(item.price)}
                     </h1>
                     <button
                       onClick={() => {
                         navigateToTheResultPageBasedOnAState(item.name);
                       }}
-                      className="bg-blue-600 text-white font-bold rounded px-4 py-2 mt-2">
+                      className="w-full shrink-0 bg-blue-600 text-white font-bold rounded px-4 py-2 mt-2">
                       {" "}
                       See availability{" "}
                     </button>

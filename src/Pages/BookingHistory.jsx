@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import MyContext from "../Component/Context";
 import { MdDelete } from "react-icons/md";
+import { FaArrowRight } from 'react-icons/fa';
+
 const BookingHistory = () => {
   const value = useContext(MyContext);
   const {
@@ -28,34 +30,31 @@ const BookingHistory = () => {
         </div>
       )}
 
-      <div className="grid gap-6">
+      <div className="flex flex-col gap-6">
         {bookedPlaces?.map((item, index) => {
           return (
-            <div key={index} className="flex items-center justify-between gap-4 ">
-              <div>
-                <p>
-                  Location ={">>"}
-                  <span className="font-bold">{item.name}</span>
+            <div key={index} className="grid gap-3 border p-2 rounded md:flex items-center justify-between gap-4 ">
+              <div className="text-sm order-2 md:order-1">
+                <p className="flex items-center gap-3 ">
+                  Location <FaArrowRight />
+                  <span className="font-semibold">{item.name}</span>
                 </p>
-                <p>
-                  CheckIn  ={">>"}
-                  <span className="font-bold">{checkIn}</span>
+                <p className="flex items-center gap-3 " >
+                  CheckIn  <FaArrowRight /> 
+                  <span className="font-semibold">{checkIn}</span>
                   
                 </p>
-                <p>
-                  CheckOut   ={">>"}
-                  <span className="font-bold">{   checkOut}</span>
+                <p className="flex items-center gap-3 ">
+                  CheckOut   <FaArrowRight />
+                  <span className="font-semibold">{   checkOut}</span>
                   
                 </p>
-                <MdDelete
-                  className="text-red-600 font-bold cursor-pointer"
-                  onClick={() => {
-                    removeFromBookedPlaces(item);
-                  }}
-                />
+
+              
+               
               </div>
               <div>
-                <img className="w-20 h-30 rounded" src={item.gridImg1} alt="" />
+                <img className="rounded md:w-40 rounded" src={item.gridImg1} alt="" />
               </div>
             </div>
           );

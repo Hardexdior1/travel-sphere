@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import Carousel from "react-multi-carousel";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import "react-multi-carousel/lib/styles.css";
 import { FaHome, FaBath, FaWater, FaShower, FaUsers } from "react-icons/fa";
@@ -68,6 +68,10 @@ const PlaceDetailsPage = () => {
 
   console.log(bookedPlaces);
 
+  // Define the event handler function
+  const handleClick = () => {
+    window.scrollTo(0,4000)
+  };
   //   if there is not name return not found
   if (!result) {
     return (
@@ -91,6 +95,7 @@ const PlaceDetailsPage = () => {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 1024 },
       items: 1,
+      
     },
     desktop: {
       breakpoint: { max: 1024, min: 768 },
@@ -116,9 +121,12 @@ const PlaceDetailsPage = () => {
 
         <button
           className="rounded bg-blue-600 text-sm py-1  text-white font-semibold md:py-2 px-3 text-lg"
-          onClick={toggleBookingBox}>
-          {" "}
-          Reserve your stay{" "}
+          onClick={(()=>{
+            toggleBookingBox()
+            handleClick()
+          })}>
+          
+          Reserve your stay
         </button>
       </div>
       <div className=" grid md:grid-cols-5 gap-5">
@@ -150,7 +158,7 @@ const PlaceDetailsPage = () => {
         </div>
         <Carousel
           responsive={responsive}
-          className=" order-1 md:order-2 md:col-span-3">
+          className="z-1 order-1 md:order-2 md:col-span-3">
           {result.slider.map((item, index) => {
             return (
               <div key={index} className="border mb-5 ">
@@ -164,6 +172,75 @@ const PlaceDetailsPage = () => {
           })}
         </Carousel>
       </div>
+      {bookingBox&&<div class="inset-0 flex items-center justify-center  bg-black bg-opacity-50">
+          <div className="max-w-xl mx-auto mt-10 mb-10 p-6 bg-white rounded-lg shadow-md ">
+            <button
+              className="border-none color-black font-semibold text-2xl  mb-4"
+              onClick={toggleBookingBox}>
+              x
+            </button>
+            <h2 class="text-2xl font-semibold mb-4 mt-4">Enter your details</h2>
+            <div class="bg-gray-100 p-4 mb-6 rounded-lg flex items-center">
+              <svg
+                class="w-6 h-6 text-yellow-500 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M13 16h-1v-4h-1m4 0h-1a2 2 0 10-4 0h-1m6 4a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span>
+                Almost done! Just fill in the{" "}
+                <span class="font-semibold">*</span> required info
+              </span>
+            </div>
+            <p>going to {result.name}</p>
+
+            <form 
+              className="grid gap-3"
+              onSubmit={(e) => {
+                e.preventDefault();
+              }}>
+              <div>
+                <input
+                  type="text"
+                  placeholder="your name"
+                  name=""
+                  id=""
+                  className="w-full border py-2 rounded px-2"
+                />
+              </div>
+              <div>
+                <input
+                  type="email"
+                  placeholder="email address"
+                  name=""
+                  id=""
+                  className="w-full border py-2 rounded px-2"
+                />
+                <small className="text-xm font-semibold">
+                  this email address is where you're going to be receiving your
+                  booking confirmation message to
+                </small>
+              </div>
+
+              <button
+                className="border font-bold py-3 rounded bg-black text-white"
+                onClick={() => {
+                  placeBooking();
+                  addToBookedPlaces(result);
+                }}>
+                {" "}
+                confirm{" "}
+              </button>
+            </form>
+          </div>
+        </div>}
       <div className="flex items-center justify-between gap-10 font-semibold overflow-x-scroll py-5">
         <div className="flex items-center gap-3 border shadow-md p-4 rounded shrink-0">
           <div>
@@ -209,77 +286,9 @@ const PlaceDetailsPage = () => {
         </div>
       </div>
 
-      {bookingBox && (
-        <div class="fixed inset-0 flex items-center justify-center  bg-black bg-opacity-50 z-10">
-          <div className="max-w-xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md z-10 relative">
-            <button
-              className="border-none color-black font-semibold text-2xl absolute top-0 left-4 mb-4"
-              onClick={toggleBookingBox}>
-              x
-            </button>
-            <h2 class="text-2xl font-semibold mb-4 mt-4">Enter your details</h2>
-            <div class="bg-gray-100 p-4 mb-6 rounded-lg flex items-center">
-              <svg
-                class="w-6 h-6 text-yellow-500 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M13 16h-1v-4h-1m4 0h-1a2 2 0 10-4 0h-1m6 4a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-              <span>
-                Almost done! Just fill in the{" "}
-                <span class="font-semibold">*</span> required info
-              </span>
-            </div>
-            <p>going to {result.name}</p>
-
-            <form
-              className="grid gap-3"
-              onSubmit={(e) => {
-                e.preventDefault();
-              }}>
-              <div>
-                <input
-                  type="text"
-                  placeholder="your name"
-                  name=""
-                  id=""
-                  className="w-full border py-2 rounded px-2"
-                />
-              </div>
-              <div>
-                <input
-                  type="email"
-                  placeholder="email address"
-                  name=""
-                  id=""
-                  className="w-full border py-2 rounded px-2"
-                />
-                <small className="text-xm font-semibold">
-                  this email address is where you're going to be receiving your
-                  booking confirmation message to
-                </small>
-              </div>
-
-              <button
-                className="border font-bold py-3 rounded bg-black text-white"
-                onClick={() => {
-                  placeBooking();
-                  addToBookedPlaces(result);
-                }}>
-                {" "}
-                confirm{" "}
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
+      
+        
+     
     </div>
   );
 };
