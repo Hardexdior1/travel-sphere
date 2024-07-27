@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+#hero{
+  background-image: url(./Pages/images/mainHero.jpeg);
+  background-size: cover;
+}
+@media (max-width:750px) {
+  #hero{
+    background-image: url(./Pages/images/hero.jpeg);
+  }
+}
+
+@media (min-width:768px) {
+  #picker{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -110px;
+  }
+}
+
+.image{
+  /* height: 400px; */
+  width: 100%;
+  object-fit: cover;
+}
+@media (min-width:1204px) {
+  .image{
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+  }
+  .result{
+    height: 400px;
+    object-fit: cover;
+  }
+}
+.test{
+  width: 100%;
+  height:100%;
+  object-fit: cover;
+}
+
