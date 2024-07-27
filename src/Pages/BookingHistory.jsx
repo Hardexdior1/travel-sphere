@@ -36,7 +36,6 @@ const BookingHistory = () => {
                 <p>
                   Location ={">>"}
                   <span className="font-bold">{item.name}</span>
-                  
                 </p>
                 <p>
                   CheckIn  ={">>"}
