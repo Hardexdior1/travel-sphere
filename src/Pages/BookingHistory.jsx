@@ -51,7 +51,9 @@ const BookingHistory = () => {
                 </p>
 
               
-               
+               {/* <button onClick={(()=>{
+                removeFromBookedPlaces(item)
+               })}>removeFromBookedPlaces</button> */}
               </div>
               <div>
                 <img className="rounded md:w-40 rounded" src={item.gridImg1} alt="" />
