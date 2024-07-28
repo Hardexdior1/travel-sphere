@@ -14,7 +14,6 @@ import LocationResult from "./Pages/LocationResult";
 import PlaceDetailsPage from "./Pages/PlaceDetailsPage";
 import BookingHistory from "./Pages/BookingHistory";
 import Footer from "./Component/Footer";
-import ga from "./new_recording_-_7_28_2024,_12_15_53_am (Original).mp4"
 function App() {
   // const [booked]
 
@@ -88,7 +87,6 @@ function App() {
 
   return (
     <section className="App">
-      <video src={ga} controls></video>
       <MyContext.Provider value={contextValue}>
         <BrowserRouter>
           <Navbar />
